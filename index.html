@@ -61,7 +61,9 @@
 
     .members img {
       width: 100px;
-      border-radius: 50%;
+      height: 100px;
+      object-fit: cover; /* 保持比例不變形，裁切成正方形 */
+      border-radius: 50%; /* 圓形大頭貼 */
       margin: 10px;
       transition: transform 0.3s ease;
     }
