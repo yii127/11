@@ -3,36 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <title>名為明天的奇蹟</title>
+  
+  <!-- 字體 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background-color: #fddee5;
+      background-color: #fad7df;
+      font-family: 'Zen Maru Gothic', sans-serif;
       text-align: center;
       padding: 50px;
-      font-family: 'Zen Maru Gothic', sans-serif; /* 使用 Zen Maru Gothic 字體 */
       color: #cc3366;
     }
+
     h1 {
       color: #ff66a3;
       font-size: 40px;
+      text-shadow: 0 0 5px #ffe1e1;
+      transition: 0.3s;
     }
+
+    h1:hover, p:hover {
+      text-shadow: 0 0 10px #575252, 0 0 20px pink;
+    }
+
     p {
-      font-size: 18px;
+      font-size: 20px;
+      margin-top: 10px;
     }
-    img {
+
+    img.main-photo {
       width: 200px;
       height: auto;
       border-radius: 15px;
+      box-shadow: 0 0 10px #fff0f5;
+      transition: transform 0.3s ease;
+    }
+
+    img.main-photo:hover {
+      transform: scale(1.05);
+    }
+
+    .decorations {
+      margin-top: 20px;
+    }
+
+    .decorations img {
+      width: 40px;
+      margin: 5px;
+    }
+
+    .members {
+      margin-top: 30px;
+    }
+
+    .members img {
+      width: 100px;
+      border-radius: 50%;
+      margin: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .members img:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 5px #fff5f9);
     }
   </style>
 </head>
+
 <body>
-  <!-- 放入圖片 -->
-  <img src="myphoto.jpg"alt="TOMORROW X TOGETHER" >
+  <!-- 主圖片 -->
+  <img src="images/myphoto.jpg" alt="TOMORROW X TOGETHER" class="main-photo">
 
   <h1>名為明天的奇蹟</h1>
   <p>トゥモローバイトゥギャザー 🌸</p>
+
+  <!-- 可愛裝飾圖標（要放 images/icons/*.png） -->
+  <div class="decorations">
+    <img src="images/icons/heart.png" alt="heart">
+    <img src="images/icons/star.png" alt="star">
+    <img src="images/icons/ribbon.png" alt="ribbon">
+  </div>
+
+  <!-- TXT 團員 Q 版圖示（要放 images/members/*.png） -->
+  <div class="members">
+    <img src="txt1.png" alt="Soobin">
+    <img src="txt2.png" alt="Yeonjun">
+    <img src="txt3.png" alt="Beomgyu">
+    <img src="txt4.png" alt="Taehyun">
+    <img src="txt5.png" alt="Hueningkai">
+  </div>
 </body>
 </html>
