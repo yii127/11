@@ -57,45 +57,80 @@
 
     .members {
       margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    .members img {
+    .member {
+      text-align: center;
+    }
+
+    .member img {
       width: 100px;
       height: 100px;
-      object-fit: cover; /* 保持比例不變形，裁切成正方形 */
-      border-radius: 50%; /* 圓形大頭貼 */
-      margin: 10px;
+      border-radius: 50%;
+      object-fit: cover;
       transition: transform 0.3s ease;
+      box-shadow: 0 0 8px #ffe6ee;
     }
 
-    .members img:hover {
+    .member img:hover {
       transform: scale(1.1);
       filter: drop-shadow(0 0 5px #fff5f9);
     }
+
+    .member-name {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #d63384;
+    }
   </style>
 </head>
-
 <body>
-  <!-- 主圖片 -->
   <img src="images/myphoto.jpg" alt="TOMORROW X TOGETHER" class="main-photo">
 
   <h1>名為明天的奇蹟</h1>
   <p>トゥモローバイトゥギャザー 🌸</p>
 
-  <!-- 可愛裝飾圖標（要放 images/icons/*.png） -->
   <div class="decorations">
     <img src="images/icons/heart.png" alt="heart">
     <img src="images/icons/star.png" alt="star">
     <img src="images/icons/ribbon.png" alt="ribbon">
   </div>
 
-  <!-- TXT 團員 Q 版圖示（要放 images/members/*.png） -->
   <div class="members">
-    <img src="txt1.png.JPG" alt="Soobin">
-    <img src="txt2.png.JPG" alt="Yeonjun">
-    <img src="txt3.png.JPG" alt="Beomgyu">
-    <img src="txt4.png.JPG" alt="Taehyun">
-    <img src="txt5.png.JPG" alt="Hueningkai">
+    <div class="member">
+      <a href="soobin.html">
+        <img src="images/members/txt1.png" alt="Soobin">
+      </a>
+      <div class="member-name">Soobin</div>
+    </div>
+    <div class="member">
+      <a href="yeonjun.html">
+        <img src="images/members/txt2.png" alt="Yeonjun">
+      </a>
+      <div class="member-name">Yeonjun</div>
+    </div>
+    <div class="member">
+      <a href="beomgyu.html">
+        <img src="images/members/txt3.png" alt="Beomgyu">
+      </a>
+      <div class="member-name">Beomgyu</div>
+    </div>
+    <div class="member">
+      <a href="taehyun.html">
+        <img src="images/members/txt4.png" alt="Taehyun">
+      </a>
+      <div class="member-name">Taehyun</div>
+    </div>
+    <div class="member">
+      <a href="hueningkai.html">
+        <img src="images/members/txt5.png" alt="Hueningkai">
+      </a>
+      <div class="member-name">Hueningkai</div>
+    </div>
   </div>
 </body>
 </html>
