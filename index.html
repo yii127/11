@@ -51,8 +51,13 @@
     }
 
     .decorations img {
-      width: 40px;
+      width: 50px;
       margin: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .decorations img:hover {
+      transform: scale(1.1);
     }
 
     .members {
@@ -89,17 +94,22 @@
   </style>
 </head>
 <body>
+  <!-- 主圖片 -->
   <img src="images/myphoto.jpg" alt="TOMORROW X TOGETHER" class="main-photo">
 
   <h1>名為明天的奇蹟</h1>
   <p>トゥモローバイトゥギャザー 🌸</p>
 
+  <!-- 成員娃娃圖示當作裝飾 -->
   <div class="decorations">
-    <img src="images/icons/heart.png" alt="heart">
-    <img src="images/icons/star.png" alt="star">
-    <img src="images/icons/ribbon.png" alt="ribbon">
+    <img src="sb.jpg.png" alt="Soobin">
+    <img src="yj.jpg.png" alt="Yeonjun">
+    <img src="bg.jpg.png" alt="Beomgyu">
+    <img src="ty.jpg.png" alt="Taehyun">
+    <img src="k.jpg.png" alt="Hueningkai">
   </div>
 
+  <!-- 團員介紹連結 -->
   <div class="members">
     <div class="member">
       <a href="soobin.html">
