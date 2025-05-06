@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>選擇拍貼框</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffe0f0, #fff);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      text-align: center;
+      padding: 30px;
+      color: #cc3366;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .frame-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .frame-option {
+      border: 3px solid transparent;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 160px;
+      height: auto;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .frame-option:hover {
+      border-color: #ff99cc;
+      transform: scale(1.05);
+    }
+
+    .frame-option img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    p.note {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>選擇你的拍貼框</h1>
+
+  <div class="frame-list">
+    <!-- 點選後跳轉 camera.html?frame=xxx -->
+    <div class="frame-option" onclick="selectFrame('frame1.png')">
+      <img src="photo1.png.png" alt="框1" />
+    </div>
+    <div class="frame-option" onclick="selectFrame('frame2.png')">
+      <img src="photo2.png.png" alt="框2" />
+    </div>
+    <div class="frame-option" onclick="selectFrame('frame3.png')">
+      <img src="frame3.png" alt="框3" />
+    </div>
+  </div>
+
+  <p class="note">請點選拍貼框開始拍攝流程</p>
+
+  <script>
+    function selectFrame(frameFile) {
+      // 跳轉到拍照頁面，帶上選擇的框檔名
+      window.location.href = `camera.html?frame=${encodeURIComponent(frameFile)}`;
+    }
+  </script>
+</body>
+</html>

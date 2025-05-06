@@ -11,22 +11,22 @@
 
   <style>
     body {
-      background-color: #fad7df;
+      background-color: #feeef1;
       font-family: 'Zen Maru Gothic', sans-serif;
       text-align: center;
       padding: 50px;
-      color: #cc3366;
+      color: #686264;
     }
 
     h1 {
-      color: #ff66a3;
+      color: #fd6492;
       font-size: 40px;
-      text-shadow: 0 0 5px #ffe1e1;
+      text-shadow: 0 0 5px #ffdde6;
       transition: 0.3s;
     }
 
     h1:hover, p:hover {
-      text-shadow: 0 0 10px #575252, 0 0 20px pink;
+      text-shadow: 0 0 10px #fd6492, 0 0 20px #ffb7cb;
     }
 
     p {
@@ -38,7 +38,7 @@
       width: 200px;
       height: auto;
       border-radius: 15px;
-      box-shadow: 0 0 10px #fff0f5;
+      box-shadow: 0 0 10px #ffdbe4;
       transition: transform 0.3s ease;
     }
 
@@ -78,18 +78,39 @@
       border-radius: 50%;
       object-fit: cover;
       transition: transform 0.3s ease;
-      box-shadow: 0 0 8px #ffe6ee;
+      box-shadow: 0 0 8px #ffdde6;
     }
 
     .member img:hover {
       transform: scale(1.1);
-      filter: drop-shadow(0 0 5px #fff5f9);
+      filter: drop-shadow(0 0 5px #feeef1);
     }
 
     .member-name {
       margin-top: 10px;
       font-size: 16px;
-      color: #d63384;
+      color: #fd6492;
+    }
+
+    /* 拍貼按鈕樣式 */
+    .photo-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #fd6492;
+      color: white;
+      font-size: 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #ffb7cb;
+      transition: all 0.3s ease;
+      margin-top: 50px;
+    }
+
+    .photo-btn:hover {
+      background-color: #ffb7cb;
+      color: #686264;
+      box-shadow: 0 0 15px #ffffff;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -141,6 +162,11 @@
       </a>
       <div class="member-name">Hueningkai</div>
     </div>
+  </div>  
+
+  <!-- 拍貼網站連結按鈕 -->
+  <div>
+    <a href="photobooth.html" class="photo-btn">📷 photobooth ✨</a>
   </div>
 </body>
 </html>

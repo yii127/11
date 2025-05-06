@@ -1,0 +1,248 @@
+from zipfile import ZipFile
+from pathlib import Path
+
+# 建立目錄
+base_path = Path("/mnt/data/photobooth")
+base_path.mkdir(parents=True, exist_ok=True)
+
+# HTML：photobooth.html
+photobooth_html = """
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>選擇拍貼框</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff0f5;
+      text-align: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      padding: 40px;
+      color: #cc3366;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .frame-option {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .frame-option img {
+      width: 150px;
+      border: 4px solid transparent;
+      border-radius: 10px;
+    }
+    .frame-option:hover img {
+      border-color: #ff69b4;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>選擇你的拍貼框</h1>
+  <div class="frame-option" onclick="selectFrame('photo1.png')">
+    <img src="photo1.png" alt="框1">
+  </div>
+  <div class="frame-option" onclick="selectFrame('photo2.png')">
+    <img src="photo2.png" alt="框2">
+  </div>
+  <br>
+  <button onclick="goToCamera()">開始拍照</button>
+
+  <script>
+    function selectFrame(frame) {
+      localStorage.setItem('selectedFrame', frame);
+    }
+    function goToCamera() {
+      if (!localStorage.getItem('selectedFrame')) {
+        alert("選擇一個拍貼框！");
+        return;
+      }
+      window.location.href = "camera.html";
+    }
+  </script>
+</body>
+</html>
+"""
+(base_path / "photobooth.html").write_text(photobooth_html, encoding="utf-8")
+
+# HTML：camera.html
+camera_html = """
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>拍照中...</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fff0f5;
+      text-align: center;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      padding: 20px;
+      color: #cc3366;
+    }
+    #camera-area {
+      position: relative;
+      width: 320px;
+      height: 480px;
+      margin: auto;
+    }
+    video, canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 480px;
+      border-radius: 10px;
+    }
+    .countdown {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 20px;
+    }
+    .preview {
+      display: none;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: pink;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>拍貼拍攝中</h1>
+  <div id="camera-area">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas" width="320" height="480"></canvas>
+  </div>
+  <div class="countdown" id="countdown">3</div>
+
+  <div class="preview" id="preview">
+    <h2>✨ 你的拍貼完成囉！✨</h2>
+    <img id="finalImage" alt="拍貼成果" style="margin-top: 15px;" />
+    <br>
+    <a id="downloadBtn" download="photobooth.png">
+      <button>📥 下載拍貼</button>
+    </a>
+    <br><br>
+    <a href="photobooth.html"><button>🔁 回首頁再拍一次</button></a>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const countdownEl = document.getElementById('countdown');
+    const finalImage = document.getElementById('finalImage');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const preview = document.getElementById('preview');
+
+    let capturedImages = [];
+    let currentPhoto = 0;
+    let frameFile = localStorage.getItem('selectedFrame') || 'photo1.png';
+
+    navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+      video.srcObject = stream;
+    });
+
+    function capturePhoto() {
+      const tempCanvas = document.createElement('canvas');
+      const tempCtx = tempCanvas.getContext('2d');
+      tempCanvas.width = video.videoWidth;
+      tempCanvas.height = video.videoHeight;
+      tempCtx.drawImage(video, 0, 0, tempCanvas.width, tempCanvas.height);
+
+      const image = new Image();
+      image.onload = () => {
+        capturedImages.push(image);
+        if (capturedImages.length === 4) {
+          createFinalImage();
+        }
+      };
+      image.src = tempCanvas.toDataURL('image/png');
+    }
+
+    function startCountdown() {
+      let count = 3;
+      countdownEl.textContent = count;
+      const interval = setInterval(() => {
+        count--;
+        countdownEl.textContent = count;
+        if (count === 0) {
+          clearInterval(interval);
+          capturePhoto();
+          currentPhoto++;
+          if (currentPhoto < 4) {
+            setTimeout(startCountdown, 1000);
+          }
+        }
+      }, 1000);
+    }
+
+    function createFinalImage() {
+      const frame = new Image();
+      frame.src = frameFile;
+      frame.onload = () => {
+        const frameWidth = 320;
+        const frameHeight = 240;
+        canvas.width = frameWidth * 2;
+        canvas.height = frameHeight * 2;
+
+        capturedImages.forEach((img, index) => {
+          const x = (index % 2) * frameWidth;
+          const y = Math.floor(index / 2) * frameHeight;
+          ctx.drawImage(img, x, y, frameWidth, frameHeight);
+          ctx.drawImage(frame, x, y, frameWidth, frameHeight);
+        });
+
+        const finalData = canvas.toDataURL('image/png');
+        finalImage.src = finalData;
+        downloadBtn.href = finalData;
+        preview.style.display = 'block';
+        countdownEl.style.display = 'none';
+        video.style.display = 'none';
+      };
+    }
+
+    window.onload = () => {
+      startCountdown();
+    };
+  </script>
+</body>
+</html>
+"""
+(base_path / "camera.html").write_text(camera_html, encoding="utf-8")
+
+# 加上假框圖
+for i in range(1, 3):
+    (base_path / f"photo{i}.png").write_bytes(b"fake image placeholder")
+
+# 建立 ZIP 壓縮檔
+zip_path = "/mnt/data/photobooth_site.zip"
+with ZipFile(zip_path, "w") as zipf:
+    for file in base_path.rglob("*"):
+        zipf.write(file, file.relative_to(base_path))
+
+zip_path
+
