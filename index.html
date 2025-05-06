@@ -18,6 +18,78 @@
       color: #686264;
     }
 
+    /* 導覽列 */
+    .navbar {
+      background-color: #ffb7cb;
+      padding: 15px 0;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #ffdbe4;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      font-size: 16px;
+      color: #fff;
+      background-color: #fd6492;
+      padding: 10px 18px;
+      border-radius: 15px;
+      transition: background-color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+
+    .navbar a:hover {
+      background-color: #feeef1;
+      color: #686264;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #ffffff;
+    }
+
+    /* 下拉選單 */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 0;
+      background-color: #ffdde6;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      min-width: 160px;
+      text-align: left;
+      padding: 10px 0;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 20px;
+      color: #fd6492;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ffdbe4;
+      color: #686264;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     h1 {
       color: #fd6492;
       font-size: 40px;
@@ -92,7 +164,6 @@
       color: #fd6492;
     }
 
-    /* 拍貼按鈕樣式 */
     .photo-btn {
       display: inline-block;
       padding: 12px 24px;
@@ -115,13 +186,32 @@
   </style>
 </head>
 <body>
+
+  <!-- 導覽列 -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">🏠 首頁</a></li>
+      <li class="dropdown">
+        <a href="#">🌟 成員</a>
+        <div class="dropdown-content">
+          <a href="soobin.html">Soobin</a>
+          <a href="yeonjun.html">Yeonjun</a>
+          <a href="beomgyu.html">Beomgyu</a>
+          <a href="taehyun.html">Taehyun</a>
+          <a href="hueningkai.html">Hueningkai</a>
+        </div>
+      </li>
+      <li><a href="photobooth.html">📷 拍貼</a></li>
+    </ul>
+  </nav>
+
   <!-- 主圖片 -->
   <img src="myphoto.jpg.jpg" alt="TOMORROW X TOGETHER" class="main-photo">
 
   <h1>名為明天的奇蹟</h1>
   <p>トゥモローバイトゥギャザー 🌸</p>
 
-  <!-- 成員娃娃圖示當作裝飾 -->
+  <!-- 成員娃娃裝飾圖示 -->
   <div class="decorations">
     <img src="sb.jpg.PNG" alt="Soobin">
     <img src="yj.jpg.PNG" alt="Yeonjun">
@@ -130,7 +220,7 @@
     <img src="k.jpg.PNG" alt="Hueningkai">
   </div>
 
-  <!-- 團員介紹連結 -->
+  <!-- 成員個人頁面連結 -->
   <div class="members">
     <div class="member">
       <a href="soobin.html">
@@ -162,11 +252,12 @@
       </a>
       <div class="member-name">Hueningkai</div>
     </div>
-  </div>  
+  </div>
 
-  <!-- 拍貼網站連結按鈕 -->
+  <!-- 拍貼網站按鈕 -->
   <div>
     <a href="photobooth.html" class="photo-btn">📷 photobooth ✨</a>
   </div>
+
 </body>
 </html>
