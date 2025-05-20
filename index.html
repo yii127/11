@@ -14,80 +14,91 @@
       background-color: #feeef1;
       font-family: 'Zen Maru Gothic', sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 0;
+      margin: 0;
       color: #686264;
     }
 
-    /* 導覽列 */
-    .navbar {
-      background-color: #ffb7cb;
-      padding: 15px 0;
-      border-radius: 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 10px #ffdbe4;
+    /* 導覽選單樣式 */
+    nav {
+      background-color: #fd6492;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .navbar ul {
+    nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
-      gap: 30px;
+      align-items: center;
+      gap: 20px;
     }
 
-    .navbar li {
+    nav ul li {
       position: relative;
     }
 
-    .navbar a {
+    nav a {
+      color: white;
       text-decoration: none;
-      font-size: 16px;
-      color: #fff;
-      background-color: #fd6492;
-      padding: 10px 18px;
-      border-radius: 15px;
-      transition: background-color 0.3s, transform 0.3s;
-      display: inline-block;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
 
-    .navbar a:hover {
-      background-color: #feeef1;
+    nav a:hover {
+      background-color: #ffb7cb;
       color: #686264;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #ffffff;
     }
 
     /* 下拉選單 */
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 45px;
-      left: 0;
-      background-color: #ffdde6;
-      border-radius: 15px;
+      top: 30px;
+      background-color: #ffeef1;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      z-index: 1;
-      min-width: 160px;
-      text-align: left;
-      padding: 10px 0;
+      border-radius: 10px;
+      min-width: 120px;
+      z-index: 1001;
     }
 
     .dropdown-content a {
       display: block;
-      padding: 10px 20px;
-      color: #fd6492;
-      background-color: transparent;
-      text-decoration: none;
+      padding: 8px;
+      color: #686264;
     }
 
     .dropdown-content a:hover {
-      background-color: #ffdbe4;
-      color: #686264;
+      background-color: #ffb7cb;
+      color: white;
     }
 
     .dropdown:hover .dropdown-content {
       display: block;
+    }
+
+    /* 歡迎訊息 */
+    #welcome-message {
+      background-color: #fff0f5;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #fd6492;
+      border-radius: 12px;
+      margin: 20px auto;
+      display: inline-block;
+      animation: fade-in 1s ease-in-out;
+      box-shadow: 0 0 8px #ffe0ea;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -95,6 +106,7 @@
       font-size: 40px;
       text-shadow: 0 0 5px #ffdde6;
       transition: 0.3s;
+      margin-top: 10px;
     }
 
     h1:hover, p:hover {
@@ -112,6 +124,7 @@
       border-radius: 15px;
       box-shadow: 0 0 10px #ffdbe4;
       transition: transform 0.3s ease;
+      margin-top: 20px;
     }
 
     img.main-photo:hover {
@@ -174,7 +187,7 @@
       text-decoration: none;
       box-shadow: 0 0 10px #ffb7cb;
       transition: all 0.3s ease;
-      margin-top: 50px;
+      margin: 50px auto;
     }
 
     .photo-btn:hover {
@@ -187,12 +200,15 @@
 </head>
 <body>
 
-  <!-- 導覽列 -->
-  <nav class="navbar">
+  <!-- 歡迎訊息 -->
+  <div id="welcome-message"></div>
+
+  <!-- 導覽選單 -->
+  <nav>
     <ul>
-      <li><a href="index.html">🏠 首頁</a></li>
+      <li><a href="index.html">首頁</a></li>
       <li class="dropdown">
-        <a href="#">🌟 成員</a>
+        <a href="#">成員</a>
         <div class="dropdown-content">
           <a href="soobin.html">Soobin</a>
           <a href="yeonjun.html">Yeonjun</a>
@@ -201,7 +217,7 @@
           <a href="hueningkai.html">Hueningkai</a>
         </div>
       </li>
-      <li><a href="photobooth.html">📷 拍貼</a></li>
+      <li><a href="photobooth.html">拍貼</a></li>
     </ul>
   </nav>
 
@@ -211,7 +227,7 @@
   <h1>名為明天的奇蹟</h1>
   <p>トゥモローバイトゥギャザー 🌸</p>
 
-  <!-- 成員娃娃裝飾圖示 -->
+  <!-- 成員娃娃裝飾 -->
   <div class="decorations">
     <img src="sb.jpg.PNG" alt="Soobin">
     <img src="yj.jpg.PNG" alt="Yeonjun">
@@ -220,44 +236,50 @@
     <img src="k.jpg.PNG" alt="Hueningkai">
   </div>
 
-  <!-- 成員個人頁面連結 -->
+  <!-- 成員介紹連結 -->
   <div class="members">
     <div class="member">
-      <a href="soobin.html">
-        <img src="txt1.png.jpg" alt="Soobin">
-      </a>
+      <a href="soobin.html"><img src="txt1.png.jpg" alt="Soobin"></a>
       <div class="member-name">Soobin</div>
     </div>
     <div class="member">
-      <a href="yeonjun.html">
-        <img src="txt2.png.jpg" alt="Yeonjun">
-      </a>
+      <a href="yeonjun.html"><img src="txt2.png.jpg" alt="Yeonjun"></a>
       <div class="member-name">Yeonjun</div>
     </div>
     <div class="member">
-      <a href="beomgyu.html">
-        <img src="txt3.png.jpg" alt="Beomgyu">
-      </a>
+      <a href="beomgyu.html"><img src="txt3.png.jpg" alt="Beomgyu"></a>
       <div class="member-name">Beomgyu</div>
     </div>
     <div class="member">
-      <a href="taehyun.html">
-        <img src="txt4.png.jpg" alt="Taehyun">
-      </a>
+      <a href="taehyun.html"><img src="txt4.png.jpg" alt="Taehyun"></a>
       <div class="member-name">Taehyun</div>
     </div>
     <div class="member">
-      <a href="hueningkai.html">
-        <img src="txt5.png.jpg" alt="Hueningkai">
-      </a>
+      <a href="hueningkai.html"><img src="txt5.png.jpg" alt="Hueningkai"></a>
       <div class="member-name">Hueningkai</div>
     </div>
-  </div>
+  </div>  
 
-  <!-- 拍貼網站按鈕 -->
+  <!-- 拍貼按鈕 -->
   <div>
     <a href="photobooth.html" class="photo-btn">📷 photobooth ✨</a>
   </div>
+
+  <!-- JS：判斷首次或再次來訪 -->
+  <script>
+    const visitKey = "txt_fan_site_visit";
+    const visitCount = localStorage.getItem(visitKey);
+    const welcomeBox = document.getElementById("welcome-message");
+
+    if (visitCount === null) {
+      localStorage.setItem(visitKey, 1);
+      welcomeBox.innerHTML = "🌸 <strong>初次見面，這裡是 <span style='color:#ff88aa'>TOMORROW X TOGETHER</span></strong>";
+    } else {
+      const count = parseInt(visitCount) + 1;
+      localStorage.setItem(visitKey, count);
+      welcomeBox.innerHTML = "✨ <strong>歡迎光臨！今天也要一起 <span style='color:#ff88aa'>閃閃發亮</span> 喔！</strong>";
+    }
+  </script>
 
 </body>
 </html>
