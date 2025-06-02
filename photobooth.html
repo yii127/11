@@ -57,15 +57,11 @@
   <h1>選擇你的拍貼框</h1>
 
   <div class="frame-list">
-    <!-- 點選後跳轉 camera.html?frame=xxx -->
-    <div class="frame-option" onclick="selectFrame('frame1.png')">
+    <div class="frame-option" onclick="selectFrame('photo1.png.png')">
       <img src="photo1.png.png" alt="框1" />
     </div>
-    <div class="frame-option" onclick="selectFrame('frame2.png')">
+    <div class="frame-option" onclick="selectFrame('photo2.png.png')">
       <img src="photo2.png.png" alt="框2" />
-    </div>
-    <div class="frame-option" onclick="selectFrame('frame3.png')">
-      <img src="frame3.png" alt="框3" />
     </div>
   </div>
 
@@ -73,9 +69,43 @@
 
   <script>
     function selectFrame(frameFile) {
-      // 跳轉到拍照頁面，帶上選擇的框檔名
       window.location.href = `camera.html?frame=${encodeURIComponent(frameFile)}`;
     }
+    function createFinalImage() {
+  const frame = new Image();
+  frame.src = frameFile;
+  frame.onload = () => {
+    // 設定畫布大小
+    canvas.width = 155;
+    canvas.height = 421;
+
+    // 清空畫布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 把四張照片按縱向排列繪製
+    const photoWidth = 155;
+    const photoHeight = 100; // 依比例調整
+
+    for (let i = 0; i < 4; i++) {
+      const img = capturedImages[i];
+      const startX = 0;
+      const startY = i * (photoHeight + 5);
+      ctx.drawImage(img, startX, startY, photoWidth, photoHeight);
+    }
+
+    // 把框疊上去
+    ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
+
+    const finalData = canvas.toDataURL('image/png');
+    finalImage.src = finalData;
+    downloadBtn.href = finalData;
+
+    // 這裡才隱藏 video
+    video.style.display = 'none';
+    countdownEl.style.display = 'none';
+    preview.style.display = 'block';
+  };
+}
   </script>
 </body>
 </html>
